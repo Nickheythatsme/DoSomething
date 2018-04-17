@@ -1,5 +1,0 @@
-{
-    "uri":"mongodb://server:PurplePortlandPlease@tripdetails-shard-00-00-40ffq.gcp.mongodb.net:27017,tripdetails-shard-00-01-40ffq.gcp.mongodb.net:27017,tripdetails-shard-00-02-40ffq.gcp.mongodb.net:27017/test?ssl=true&replicaSet=TripDetails-shard-0&authSource=admin",
-    "username":"server",
-    "password":"PurplePortlandPlease"
-}
