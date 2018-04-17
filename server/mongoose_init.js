@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 const path = require('path');
 const fs = require('fs');
+const debug = require('debug')('express-mongoose-es6-rest-api:index');
 
 // Get the mongo authentication from the JSON. Use local mongo as default
 if (fs.existsSync(path.join(__dirname, 'mongo_auth.json'))) {
@@ -31,11 +32,11 @@ mongoose.Promise = global.Promise;
 // Get the default connection
 var db = mongoose.connection;
 db.on('error', function(error) {
-    console.log('MongoDB error: ' + String(error));
+    console.error('MongoDB error: ' + String(error));
 });
 db.once('open', (err) =>{
-    if(err) console.log(err);
-    else console.log("Database connection opened");
+    if(err) debug(err);
+    else debug("Database connection opened");
 });
 
 module.exports = mongoose;
