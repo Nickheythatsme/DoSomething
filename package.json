@@ -1,0 +1,19 @@
+{
+  "name": "dosomething",
+  "version": "1.0.0",
+  "description": "Event posting and tracking website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nickheythatsme/DoSomething.git"
+  },
+  "author": "Nick Grout",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nickheythatsme/DoSomething/issues"
+  },
+  "homepage": "https://github.com/Nickheythatsme/DoSomething#readme"
+}
