@@ -1,19 +1,30 @@
+var app = require('./config/express');
 var mongoose = require('mongoose');
-const path = require('path');
-const fs = require('fs');
-const debug = require('debug')('express-mongoose-es6-rest-api:index');
+var path = require('path');
+var fs = require('fs');
+/*
+import app from './config/express';
+import mongoose from 'mongoose';
+import path from 'path';
+import fs from 'fs';
+*/
+
+
+// Debug
+const debug = require('debug')('app');
+
+// INITIALIZE Mongoose =======================================================
+// Get mongoose to use the global Promise library
+mongoose.Promise = global.Promise;
 
 // Get the mongo authentication from the JSON. Use local mongo as default
 if (fs.existsSync(path.join(__dirname, 'mongo_auth.json'))) {
     var mongo_auth = JSON.parse(fs.readFileSync(path.join(__dirname, 'mongo_auth.json')));
 }
-else
-    var mongo_auth = {
-        // Local address
-        "uri":"mongodb://localhost:27017/hiking_albums",
-        "username":null,
-        "password":null
-    };
+else{
+    console.error('Cannot find mongo authentication.');
+    process.exit(1);
+}
 
 // Connect to the database, exit if failure
 mongoose.connect(mongo_auth.uri, err => {
@@ -26,8 +37,6 @@ mongoose.connect(mongo_auth.uri, err => {
         console.log('Connected to mongoDB with account: ' + mongo_auth.username);
     }
 }); 
-// Get mongoose to use the global Promise library
-mongoose.Promise = global.Promise;
 
 // Get the default connection
 var db = mongoose.connection;
@@ -39,4 +48,11 @@ db.once('open', (err) =>{
     else debug("Database connection opened");
 });
 
-module.exports = mongoose;
+
+// START APP ====================================================================
+var port = process.env.PORT || 8080;
+app.listen(port);
+console.log("App listening on port: " + port);
+
+
+module.exports = app;
