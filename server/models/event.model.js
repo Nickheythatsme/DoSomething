@@ -26,7 +26,6 @@ eventSchema.statics = {
         @returns {Promise<Event, APIError}
     */
     get(id) {
-        console.log('MODEL: Finding event: ' + id);
         return this.findById(id).exec().then( (event) => {
             if(event) {
                 return event;
@@ -37,9 +36,9 @@ eventSchema.statics = {
     },
 
     // List a collection of events
-    list({ skip=0, limit=50 } = {}){
+    list({ skip=0, limit=50 } = {}) {
         return this.find()
-            .sort()
+            .sort({created: -1})
             .skip(+skip)
             .limit(+limit)
             .exec();

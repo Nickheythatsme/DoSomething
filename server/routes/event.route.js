@@ -23,60 +23,17 @@ function handleError(req, res, err, message='unknown') {
     res.send('Error: ' + message);
 }
 
-// Post a new event
 router.route('/')
-    .get((params) => {
-        params.res.send('test');
-        return eventCtrl.list(params);
-    })
-    /*
-    .get(function(req, res) {
-        console.log('Listing events');
-        res.json({works:'true'});
-        console.log(eventCtrl.list({limit:50, skip:0}));
-        //return res.json(eventCtrl.list(50, 0));
-    })
-    */
-    .put(validate(paramValidation.createEvent), eventCtrl.create);
+    .get(eventCtrl.list)
+    .put(validate(paramValidation.createEvent), eventCtrl.create); // Post a new event
 
 router.route('/:id')
     .get(eventCtrl.get)
     .put(validate(paramValidation.updateEvent), eventCtrl.update)
     .delete(eventCtrl.remove);
 
-router.param('id', eventCtrl.load);
 
-/*
+// router.param('id', eventCtrl.load);
 
-// Get an event by id
-router.get('/:id', (req, res) => {
-    event.findOne({_id: req.param.id}, (err, event) => {
-        if (err) handleError(req, res, err);
-        else res.json(event);
-    });
-});
-
-// Post a new event
-router.post('/', (req, res) => {
-
-    console.log(d);
-
-    // Extract the validation errors from a request.
-    const v_error = req.validationErrors();
-
-    // Test if there are errors
-    if (v_error) {
-        var message = 'Malformed data: ';
-        for(e in v_error) {
-            message += v_error[e].msg + ', ';
-        }
-        handleError(req, res, message, message);
-    }
-    else {
-        // Data from form is valid.
-        res.send(req.body.title);
-    }
-});
-*/
 
 module.exports = router;

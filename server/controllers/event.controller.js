@@ -3,55 +3,59 @@ var event = require('../models/event.model');
 import event from '../models/event.model';
 */
 
-function load(params) {
-    console.log('api load req' + params.id);
-    return event.get(params.id);
+function load(req) {
+    return event.get(req.params.id);
 }
 
 function get(req, res) {
-    console.log('api get req');
-    return res.json(req.post);
+    return event.get(req.params.id).then((data) => {
+        res.json(data);
+    });
 }
 
-function create(params) {
+function create(req, res) {
     const new_event = new Event({
-        title: params.data.title,
-        author: params.data.author,
-        time: params.data.time,
-        type: params.data.type,
-        tags: params.data.tags,
+        title: req.params.data.title,
+        author: req.params.data.author,
+        time: req.params.data.time,
+        type: req.params.data.type,
+        tags: req.params.data.tags,
         location: {
-            name: params.data.location.name,
+            name: req.params.data.location.name,
         }
     });
+    res.json(new_event);
     return new_event.save();
 }
 
-function update(params){
-    return load(params).then(event => {
+function update(req, res){
+    return load(req).then(event => {
         const tmp = event;
-        if (params.data.title)
+        if (req.params.data.title)
             event.title = params.data.title;
-        if (params.data.author)
+        if (req.params.data.author)
             event.author = params.data.author;
-        if (params.data.time)
+        if (req.params.data.time)
             event.time = params.data.time;
-        if (params.data.type)
+        if (req.params.data.type)
             event.type = params.data.title;
         return post.save();
     });
 }
 
-function list(params) {
-    console.log(params);
-    const { limit=50, skip=0 } = params;
-    return event.list({limit, skip});
+function list(req, res) {
+    const { limit=50, skip=0 } = req;
+    return event.list({limit, skip}).then( (data, err) => {
+        res.json(data);
+    })
 }
 
-function remove(params){
-    return load(params).then(event => {
+function remove(req, res){
+    return load(req).then(event => {
         event.remove();
-    });
+    }).then( (result) => {
+        res.json(result);
+    })
 }
 
 module.exports = { load, get, create, update, list, remove };
