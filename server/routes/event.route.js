@@ -2,12 +2,6 @@ var express = require('express');
 var validate = require('express-validator');
 var paramValidation = require('../config/param-validation');
 var eventCtrl = require('../controllers/event.controller');
-/*
-import express from 'express';
-import validate from 'express-validator';
-import paramValidation from '../config/param-validation';
-import eventCtrl from '../controllers/event.controller';
-*/
 var router = express.Router();
 
 // Debug

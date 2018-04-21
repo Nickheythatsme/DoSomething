@@ -25,8 +25,10 @@ app.use(methodOverride());
 app.use(cors());
 
 app.use('*', (req, res, next) => {
-    var output = "Request" + 
-    "\n\tType: " + req.method + "\n\tURL: " + req.url;
+    var output = "Request"
+    + "\n\tType: " + req.method 
+    + "\n\tURL: " + req.originalUrl
+    + "\n\tParams: " + req.params;
     console.log(output);
     return next();
 })

@@ -1,28 +1,28 @@
 var Joi = require('joi');
 
 
-module.export = {
-    // POST /api/event
-    createEvent: {
-        body: {
-            title: Joi.string().required(),
-            author: Joi.string().required(),
-            time: Joi.string().isoDate(),
-            type: Joi.string().required().lowercase(),
-            tags: Joi.array().optional(),
-            location: {
-                name: Joi.string().required(),
-                latitude: Joi.number().optional(),
-                longitude: Joi.number().optional()
-            }
-        }
-    },
-    updateEvent: {
+const updateEvent = 
+Joi.object().keys({
         body: {
             title: Joi.string().required()
         },
         params: {
             eventId: Joi.string().hex().required()
         }
-    }
-}
+    });
+
+const createEvent =
+    Joi.object().keys({
+        title: Joi.string().required().max(60),
+        author: Joi.string().required(),
+        time: Joi.string().isoDate().required(),
+        type: Joi.string().required().lowercase().max(60),
+        tags: Joi.array().optional(),
+        location: Joi.object().keys({
+            name: Joi.string().required().max(200),
+            latitude: Joi.number().optional(),
+            longitude: Joi.number().optional()
+        })
+    });
+
+module.exports = { createEvent, updateEvent }

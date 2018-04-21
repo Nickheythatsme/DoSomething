@@ -1,7 +1,6 @@
 var event = require('../models/event.model');
-/*
-import event from '../models/event.model';
-*/
+var joi = require('joi');
+var { createEvent, updateEvent } = require('../config/param-validation');
 
 function load(req) {
     return event.get(req.params.id);
@@ -10,47 +9,56 @@ function load(req) {
 function get(req, res) {
     return event.get(req.params.id).then((data) => {
         res.json(data);
+    }, (err) => {
+        res.json(err);
     });
 }
 
 function create(req, res) {
-    const new_event = new Event({
-        title: req.params.data.title,
-        author: req.params.data.author,
-        time: req.params.data.time,
-        type: req.params.data.type,
-        tags: req.params.data.tags,
-        location: {
-            name: req.params.data.location.name,
+    console.log('body: ' + JSON.stringify(req.body));
+    var result = joi.validate(req.body, createEvent, (err, value) =>{
+        if (err) {
+            res.send(err);
+            return null;
+        }
+        else {
+            const new_event = new event({
+                title: req.body.title,
+                author: req.body.author,
+                time: req.body.time,
+                type: req.body.type,
+                tags: req.body.tags,
+                location: req.body.location
+            });
+            res.json(value);
+            return new_event.save();
         }
     });
-    res.json(new_event);
-    return new_event.save();
 }
 
-function update(req, res){
+function update(req, res) {
     return load(req).then(event => {
-        const tmp = event;
-        if (req.params.data.title)
-            event.title = params.data.title;
-        if (req.params.data.author)
-            event.author = params.data.author;
-        if (req.params.data.time)
-            event.time = params.data.time;
-        if (req.params.data.type)
-            event.type = params.data.title;
+        console.log(JSON.stringify(req.body));
+        if (req.body.title)
+            event.title = body.title;
+        if (req.body.author)
+            event.author = body.author;
+        if (req.body.time)
+            event.time = body.time;
+        if (req.body.type)
+            event.type = body.title;
         return post.save();
     });
 }
 
 function list(req, res) {
-    const { limit=50, skip=0 } = req;
+    const { limit=50, skip=0 } = req.query;
     return event.list({limit, skip}).then( (data, err) => {
         res.json(data);
     })
 }
 
-function remove(req, res){
+function remove(req, res) {
     return load(req).then(event => {
         event.remove();
     }).then( (result) => {
@@ -59,4 +67,3 @@ function remove(req, res){
 }
 
 module.exports = { load, get, create, update, list, remove };
-// export default { load, get, create, update, list, remove };

@@ -17,7 +17,18 @@ class ExtendableError extends Error {
 
 class APIError extends ExtendableError {
     constructor(message, status, isPublic){
-        super(message, status, isPublic);
+        super(message, status, isPublic = true);
+    }
+    toJSON() {
+        if (this.isPublic)
+            return {
+                message : this.message,
+                status: this.status
+            }
+        else
+            return {
+                status: this.status
+            }
     }
 }
 
