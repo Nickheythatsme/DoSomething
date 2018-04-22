@@ -27,4 +27,14 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
+  close() {
+    console.log('close');
+  }
+  open() {
+    console.log('open');
+  }
+  toggle() {
+    console.log('toggle');
+  }
+
 }
