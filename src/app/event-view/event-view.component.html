@@ -1,3 +1,18 @@
-<p>
-  event-view works!
-</p>
+<h1>{{ current.title | uppercase}}</h1>
+
+<div class="sub_title">
+  <ul>
+    <li>
+      <p>Author: {{ current.author }}</p>
+    </li>
+    <li>
+      <p>Event time: {{current.time | date:"M/dd/yy h:mm a"}}</p>
+    </li>
+    <li>
+      <p>Created: {{current.created | date:"M/dd/yy"}}</p>
+    </li>
+    <li>
+      <p>Type: {{current.type}}</p>
+    </li>
+  </ul>
+</div>

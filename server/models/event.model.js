@@ -6,6 +6,7 @@ var APIError = require('../config/APIError');
 const eventSchema = new mongoose.Schema({
     title:  String,
     author: String,
+    description: String,
     created: {type: Date, default: Date.now},
     time: Date,
     type: String,
