@@ -1,0 +1,17 @@
+<div class="info_holder">
+  <ul>
+    <li>
+      Author: {{ current.author }}
+    </li>
+    <li>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASGSURBVGhD7ZpnqBxVGIZXY6/EhmJFTAix/PGPYAHLLxUVREQFC8GAfzSgWJAkQjA2sIAd/SOKqCDYEFERC6gxkqhEgxWxYe+KKOrznLsnzJ6Z2ZnZnblsYF94yP3ONzM37+453ylzezW0JZwKd8Or8Cn8AT/Bu/AsXAYLoA2thF/hP/gHXoY9YCztCJ+BD63DG3AMjKpDoOi5N8JY0sgH8CYsh8NgT9gCtoH5cDzcCV9A/MVPws7QVCdAvF/F+IEQVegq+BfifyJi12kizV0I34L3fwgHQhONZeRi+B5+gL+hjpHN+v8WaVd4CXzGd3AAqPMgPruK1EgZr8PuMCC7ye8QLyozsjV8Do+HqFh+Ow+Cz1kHdlH1CPiBlREHeWrkL0iv/Q3MrYAN2hxWgYlH+/+WGdkHzFu9hskx9Bp47T021FCTrnUmmLs9RH2dCza+Dw5mfx7XiNoP/gTL6EIbKhT/48/AXDi9H9cysimsBxvPAD9JB7/9u0hNjKjrwOsfDtFwORcVFZ5rIVXOyJFgg2VWU8rqc87Mjzk1NbIL+I04iTq+qrQEPgHHwTdgV98JUuWMOJPacE2IqtXUiHoBvOeUELWjnJFXwIZjQ1StUYxcAd5jN2tLOSMfgw17h6haoxhx7HnPfSGaGYf7j4ldcMCIVcUGa38dxar2CxxkQw0dDd7zXIhm1mPGbbDBiGXWhm1DVC0LQpwfHMCLoUrHgdc/HaJe73D4aEy+hgEj74EN80JUT1vBbeB9cj9sB2WK89S9IWpHuTHi5GPDiSFqptPgZ/D+J2wo0dXgNa6g21LOyOVgwx0hai6/STdXy0JUrLfB3+Gc1ZZyRpxNbfgS6g74JorPd3Kb06eoCpWxGxQpZ0TFBeNFIWpXLk189k0hmpkUjetSthcpNBLLoZ+a+4m2ZFdy7eQ4is+9AVb3iWs8K2dsi7hkamxEub8w8SK00cX2gq/AZ15qQ4GOAPNx2Z7VsCW8KjXi4i5+CnYHS+yo0sRb4LMeA8dFkToxopyp3fZ6geNmX2iqo8DC4TPWQtwdFqkzI8o9tudVXuTMfT34bVXJ6vQQxP2EXXV7GKbOjHjco3YAZ+F4GOF+wqW4q9izwE/dZcfZ4DYgzhPiGsy5Ke5t3IMcWsIi8B4P4dKcFdTcSEZcQGY3VG5PHS/ZQ4kyrHg3Q/rtHQxF19dlJCMmivbqLrtPBrecLsWfh6fAb81lh2W2bEBHI56QpCW2k/KryozUkWfEsWtmFY3YfVJ1NkaGGbEcXwInhWhQHpI56TlWUk2cEcuo+aKdYdw1To2EaFCdG3FnZunNEh/q/j/NnQ/m3sm0ReK+2x1nmrsSzHVmZLbpzIhzjRupLHYbc5bYNOdbLnM/Ztoivhgy56uINLcGzE3HyNQITI2EaFCdG3FgegyU5QIwp8k056s9c56fpbmlYM6XrWnOQ3VznRmZbVo34grYJf1s47uaIo1sZNI0NTJpGmrEgwO3tWkFmURuAY3cCjn5lwQmNyY8AMnJPyfyFcBdGwG+PfCgZBOYasLU6/0PdOkVOmu1ek4AAAAASUVORK5CYII=">
+      {{current.time | date:"h:mm a M/dd/yy"}}
+    </li>
+    <li>
+      Type: {{current.type}}
+    </li>
+    <li>
+      Created: {{current.created | date:"M/dd/yy"}}
+    </li>
+  </ul>
+</div>

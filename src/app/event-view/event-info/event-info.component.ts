@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { event } from './event';
-import { GetEventService } from './get-event.service';
+import { GetEventService } from '../get-event.service';
+import { event } from '../event';
 
 @Component({
-  selector: 'app-event-view',
-  templateUrl: './event-view.component.html',
-  styleUrls: ['./event-view.component.scss']
+  selector: 'app-event-info',
+  templateUrl: './event-info.component.html',
+  styleUrls: ['./event-info.component.scss']
 })
-export class EventViewComponent implements OnInit {
+export class EventInfoComponent implements OnInit {
   public current : event;
   private getEvent : GetEventService;
 

@@ -1,12 +1,12 @@
-ul {
-    list-style:none;
+.grid_container{
+    display:grid;
+    grid-template-columns: 40fr 60fr;
+    grid-template-rows:1;
+    grid-column-gap: 10px;
+}
+
+.test_container{
     background-color:grey;
-    text-align:center;
-}
-ul li {
-    display:inline-block;
-    padding:  10px 10px 10px 10px;
-}
-ul li p {
-    margin: 0;
+    border:red;
+    width:auto;
 }
