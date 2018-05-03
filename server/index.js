@@ -12,11 +12,12 @@ const debug = require('debug')('app');
 mongoose.Promise = global.Promise;
 
 // Get the mongo authentication from the JSON. Use local mongo as default
-if (fs.existsSync(path.join(__dirname, 'mongo_auth.json'))) {
-    var mongo_auth = JSON.parse(fs.readFileSync(path.join(__dirname, 'mongo_auth.json')));
+let mongo_auth_path = path.join(__dirname, 'mongo_auth.json');
+if (fs.existsSync(mongo_auth_path)) {
+    var mongo_auth = JSON.parse(fs.readFileSync(mongo_auth_path));
 }
 else{
-    console.error('Cannot find mongo authentication. At: ',path.join(__dirname, 'mongo_auth.json'));
+    console.error('Cannot find mongo authentication. At: ',mongo_auth_path);
     process.exit(1);
 }
 
