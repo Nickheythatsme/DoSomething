@@ -2,16 +2,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const cors = require('cors');
-
 const express = require('express');
 const appRoot = require('app-root-path');
-
 var routes = require('../routes/index.route');
 var APIError = require('./APIError');
-/*
-import routes from '../routes/index.route';
-import ApiERROR from './APIError';
-*/
 
 // Express init/config
 var app = express();

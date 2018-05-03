@@ -2,12 +2,6 @@ var app = require('./config/express');
 var mongoose = require('mongoose');
 var path = require('path');
 var fs = require('fs');
-/*
-import app from './config/express';
-import mongoose from 'mongoose';
-import path from 'path';
-import fs from 'fs';
-*/
 
 
 // Debug
@@ -22,7 +16,7 @@ if (fs.existsSync(path.join(__dirname, 'mongo_auth.json'))) {
     var mongo_auth = JSON.parse(fs.readFileSync(path.join(__dirname, 'mongo_auth.json')));
 }
 else{
-    console.error('Cannot find mongo authentication.');
+    console.error('Cannot find mongo authentication. At: ',path.join(__dirname, 'mongo_auth.json'));
     process.exit(1);
 }
 
