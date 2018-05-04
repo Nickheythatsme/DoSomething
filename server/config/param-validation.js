@@ -25,4 +25,14 @@ const createEvent =
         })
     });
 
-module.exports = { createEvent, updateEvent }
+const createUser = 
+    Joi.object().keys({
+        username: Joi.string().required().max(16),
+        password: Joi.string().required().min(8),
+        bio: Joi.string().optional(),
+        location: {
+            name: Joi.string().required()
+        }
+    })
+
+module.exports = { createEvent, updateEvent, createUser }
