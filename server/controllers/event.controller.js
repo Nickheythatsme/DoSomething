@@ -47,7 +47,7 @@ function update(req, res) {
             event.time = body.time;
         if (req.body.type)
             event.type = body.title;
-        return post.save();
+        return event.save();
     });
 }
 

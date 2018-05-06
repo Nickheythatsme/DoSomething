@@ -34,3 +34,33 @@ function create(req, res) {
         }
     })
 }
+
+function remove(req, res) {
+    return load(req).then(user => {
+        user.remove();
+    }).then( (result) => {
+        res.json(result);
+    })
+}
+
+function update(req, res) {
+    return load(req).then(event => {
+        console.log(JSON.stringify(req.body));
+        if (req.body.username)
+            user.username = body.title;
+        if (req.body.password)
+            user.password = body.author;
+        if (req.body.bio)
+            user.bio = body.bio;
+        if (req.body.eventsAuthored)
+            user.eventsAuthored = body.eventsAuthored;
+        if (req.body.eventsAttended)
+            user.eventsAttended = body.eventsAttended;
+        if (req.body.location)
+            user.location = body.location;
+        return user.save();
+    });
+}
+
+
+module.exports = { load, get, create, update, list, remove };
