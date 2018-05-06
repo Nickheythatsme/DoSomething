@@ -10,15 +10,12 @@ var debug = require('debug')('app-event');
 
 router.route('/')
     .get(eventCtrl.list)
-    .put(validate(paramValidation.createEvent), eventCtrl.create); // Post a new event
+    .post(validate(paramValidation.createEvent), eventCtrl.create) // Post a new event
+    .put(validate(paramValidation.updateEvent), eventCtrl.update); // Post a new event
 
 router.route('/:id')
     .get(eventCtrl.get)
     .put(validate(paramValidation.updateEvent), eventCtrl.update)
     .delete(eventCtrl.remove);
-
-
-// router.param('id', eventCtrl.load);
-
 
 module.exports = router;

@@ -40,13 +40,14 @@ function update(req, res) {
     return load(req).then(event => {
         console.log(JSON.stringify(req.body));
         if (req.body.title)
-            event.title = body.title;
+            event.title = req.body.title;
         if (req.body.author)
-            event.author = body.author;
+            event.author = req.body.author;
         if (req.body.time)
-            event.time = body.time;
+            event.time = req.body.time;
         if (req.body.type)
-            event.type = body.title;
+            event.type = req.body.title;
+        res.json(event);
         return event.save();
     });
 }

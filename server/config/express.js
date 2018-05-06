@@ -6,6 +6,7 @@ const express = require('express');
 const appRoot = require('app-root-path');
 var routes = require('../routes/index.route');
 var APIError = require('./APIError');
+var httpStatus = require('http-status');
 
 // Express init/config
 var app = express();

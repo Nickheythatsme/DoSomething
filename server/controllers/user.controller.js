@@ -43,6 +43,7 @@ function remove(req, res) {
     })
 }
 
+// Update a user's info
 function update(req, res) {
     return load(req).then(event => {
         console.log(JSON.stringify(req.body));
