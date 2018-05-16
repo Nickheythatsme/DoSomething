@@ -1,9 +1,6 @@
 var express = require('express');
 var eventRoute = require('./event.route');
-/*
-import express from 'express';
-import eventRoute from './event.route';
-*/
+var userRoute = require('./user.route');
 
 const router = express.Router(); // make a router for the whole api
 
@@ -11,11 +8,14 @@ router.get('/health-check', (req, res) => {
     const stats = {
         'status':'ok',
         'cpuUsage':process.cpuUsage(),
+        'memory':process.memoryUsage(),
+        'upTime':process.uptime()
     }
-    res.send('Stats:\n' + JSON.stringify(stats));
+    res.json(stats);
 });
 
-// mount event api
+// mount sub api's
 router.use('/event', eventRoute);
+router.use('/user', userRoute);
 
 module.exports = router;

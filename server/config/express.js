@@ -22,8 +22,7 @@ app.use(cors());
 app.use('*', (req, res, next) => {
     var output = "Request"
     + "\n\tType: " + req.method 
-    + "\n\tURL: " + req.originalUrl
-    + "\n\tParams: " + req.params;
+    + "\n\tURL: " + req.originalUrl;
     console.log(output);
     return next();
 })
@@ -31,10 +30,9 @@ app.use('*', (req, res, next) => {
 // Add event api to the app
 app.use('/api', routes);
 
-
 // Reroute all other requests to the index page
 app.get('*', function(req, res) {
-    res.sendFile(path.join(appRoot.path, '/dist/index.html'));
+    res.sendFile(path.join(appRoot.path, 'dist/index.html'));
 });
 
 // catch 404 and forward to error handler

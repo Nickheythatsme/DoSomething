@@ -14,6 +14,9 @@ function get(req, res) {
     });
 }
 
+/*
+Create new event
+*/
 function create(req, res) {
     console.log('body: ' + JSON.stringify(req.body));
     var result = joi.validate(req.body, createEvent, (err, value) =>{
@@ -36,6 +39,9 @@ function create(req, res) {
     });
 }
 
+/*
+Update an event
+*/
 function update(req, res) {
     return load(req).then(event => {
         console.log(JSON.stringify(req.body));
@@ -52,6 +58,9 @@ function update(req, res) {
     });
 }
 
+/*
+List events
+*/
 function list(req, res) {
     const { limit=50, skip=0 } = req.query;
     return event.list({limit, skip}).then( (data, err) => {
@@ -59,6 +68,9 @@ function list(req, res) {
     })
 }
 
+/*
+Remove an event
+*/
 function remove(req, res) {
     return load(req).then(event => {
         event.remove();

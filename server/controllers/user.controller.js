@@ -7,30 +7,33 @@ function load(req) {
 }
 
 function get(req, res) {
-    return user.get(req.params.id).then( (data) => {
+    return load(req).then( (data) => {
         res.json(data);
     }, (err) => {
         res.json(err);
     })
 }
 
+/*
+Create new user 
+*/
 function create(req, res) {
     var result = joi.validate(req.body, createUser, (err, value) => {
         if (err) {
             res.send(err);
+            console.log(err);
             return null;
         }
         else{
             const new_user = new user({
                 username: req.body.username,
                 password: req.body.password,
-                created: Date.now,
                 location: {
                     name: req.body.location.name
                 }
             });
-            res.json(value);
-            return new_user.save();
+            new_user.save();
+            return res.json(new_user);
         }
     })
 }
@@ -61,6 +64,16 @@ function update(req, res) {
             user.location = body.location;
         return user.save();
     });
+}
+
+/*
+List users
+*/
+function list(req, res) {
+    const { limit=50, skip=0 } = req.query;
+    return user.list({limit, skip}).then( (data, err) => {
+        res.json(data);
+    })
 }
 
 
