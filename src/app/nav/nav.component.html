@@ -1,7 +1,7 @@
 <div class="container">
   <ul>
-    <a *ngFor="let item of items" routerLink="{{ item.route }}">
-      <li>{{ item.name }}</li>
-    </a>
+    <li class="nav_item" *ngFor="let item of items" routerLink="{{ item.route }}">
+      <div>{{ item.name }}</div>
+    </li>
   </ul>
 </div>

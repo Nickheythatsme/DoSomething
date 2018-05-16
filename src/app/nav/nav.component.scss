@@ -18,3 +18,12 @@ ul a {
     color:black;
     text-decoration: none;
 }
+.nav_item{
+    background-color:red;
+    height:100%;
+    width: 100%;
+}
+.nav_item :hover{
+    padding:auto;
+    cursor: pointer;
+}
