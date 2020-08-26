@@ -1,0 +1,10 @@
+version: '3'
+services:
+  webapp:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes: # For webpack dev server to use our local files
+      - ./:/srv
+  redis:
+    image: "redis:alpine"
